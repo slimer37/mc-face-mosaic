@@ -13,6 +13,8 @@ in_rush = True
 # side length of empty middle region
 empty_center_side = 0
 
+output_directory = "output"
+
 def printerr(text):
     print(f"\033[31m{text}\033[0m")
 
@@ -70,7 +72,7 @@ if __name__ == "__main__":
         mosaic.paste(face_img, (x * face_size, y * face_size))
         
         if not in_rush:
-            mosaic.save("mosaic.png")
+            mosaic.save(f"{output_directory}/mosaic.png")
 
         x += 1
         
@@ -83,12 +85,12 @@ if __name__ == "__main__":
 
     new_size = (dimension, dimension)
     
-    mosaic.save("mosaic.png")
+    mosaic.save(f"{output_directory}/mosaic.png")
 
     print("Resizing to", new_size)
 
     mosaic = mosaic.resize(new_size, Image.Resampling.NEAREST)
 
-    mosaic.save(f"mosaic@{dimension}x.png")
+    mosaic.save(f"{output_directory}/mosaic@{dimension}x.png")
 
     print("Done!")
