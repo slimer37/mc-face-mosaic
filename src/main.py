@@ -67,7 +67,7 @@ if __name__ == "__main__":
             print("Placing", username, "at", (x, y))
         else:
             printerr(f"@ {(x, y)}: Failed to find {username}'s face.")
-            face_img = Image.open("placeholder/missing-face.png")
+            face_img = Image.open("src/placeholder/missing-face.png")
 
         mosaic.paste(face_img, (x * face_size, y * face_size))
         
