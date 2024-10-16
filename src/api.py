@@ -1,5 +1,4 @@
 import requests
-import urllib.request
 from PIL import Image
 
 def to_uuid(username : str):
@@ -15,7 +14,7 @@ def get_face(uuid : str, size = 8, overlay = False) -> Image.Image:
     url = f"https://crafatar.com/avatars/{uuid}?size={size}"
 
     if overlay: url += "&overlay"
-
-    urllib.request.urlretrieve(url, "tmp.png")
     
-    return Image.open(r"tmp.png")
+    img_data = requests.get(url, stream=True).raw
+    
+    return Image.open(img_data)
