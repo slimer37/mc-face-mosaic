@@ -9,17 +9,17 @@ face_size = 8
 
 placeholder_face_img = Image.open("src/placeholder/missing-face.png")
 
-def printerr(text):
+def print_error(text):
     print(f"\033[31m{text}\033[0m")
 
 def grab_face(username):
     uuid = api.to_uuid(username)
 
     if uuid is None:
-        printerr(f"Couldn't find UUID for {username}.")
+        print_error(f"Couldn't find UUID for {username}.")
         return placeholder_face_img
     
-    return api.get_face(uuid, face_size, overlay = True)
+    return api.get_face(uuid, face_size, overlay=True)
 
 def main():
     argparser = ArgumentParser()
@@ -39,7 +39,7 @@ def main():
     player_count = len(usernames)
     space_count = player_count + empty_center_side * empty_center_side
 
-    # Find minimum square to fit
+    # Find minimum square
     i = 0
     while i * i < space_count:
         i += 1
@@ -74,7 +74,7 @@ def main():
         if face_img:
             print("Placing", username, "at", (x, y))
         else:
-            printerr(f"@ {(x, y)}: Failed to find {username}'s face.")
+            print_error(f"@ {(x, y)}: Failed to find {username}'s face.")
 
         mosaic.paste(face_img, (x * face_size, y * face_size))
         
