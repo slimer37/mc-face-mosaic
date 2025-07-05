@@ -1,9 +1,8 @@
 import api
+import os
+
 from PIL import Image
 from argparse import ArgumentParser
-
-with open("names.txt") as f:
-    usernames = [l.strip() for l in f.readlines() if not l.startswith("#") and l.strip() != '']
 
 face_size = 8
 
@@ -28,9 +27,17 @@ def main():
     argparser.add_argument("--rush", "-r", action="store_false", help="Whether to save the image to mosaic.png after each face is added")
     argparser.add_argument("--empty-center-size", "-e", help="The size of a center square to leave empty for an image to be added later", default=0, type=int)
     argparser.add_argument("--out", "-o", help="The output directory", default="output", type=str)
+    argparser.add_argument("namefile", help="The file containing the list of names to use.", type=str)
     
     args = argparser.parse_args()
     
+    if os.path.exists(args.namefile) and not os.path.isdir(args.namefile):
+        with open(args.namefile) as f:
+            usernames = [l.strip() for l in f.readlines() if not l.startswith("#") and l.strip() != '']
+    else:
+        print_error(f"File {args.namefile} does not exist or is a directory.")
+        return
+
     minimum_size = args.min_size
     in_rush = args.rush
     empty_center_side = args.empty_center_size

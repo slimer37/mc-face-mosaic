@@ -3,7 +3,7 @@ Simple Python program that uses Crafatar to make a grid of player heads.
 
 I made this to generate icons for a Minecraft server.
 
-1. Provide an input `names.txt` file in the following format:
+1. Provide an input (e.g., `names.txt`) file in the following format:
 
     ```
     Grian
@@ -22,6 +22,6 @@ I made this to generate icons for a Minecraft server.
     >
     > <img src="src/placeholder/missing-face.png" alt="Placeholder" style="width:50px;"/>
 
-1. Run `python src/main.py` and find the mosaic in `output/mosaic@xxx.png`. 
+1. Run `python src/main.py names.txt` and find the mosaic in `output/mosaic@xxx.png`. 
 
     ![Sample Mosaic](assets/sample.png)
