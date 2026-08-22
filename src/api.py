@@ -10,8 +10,8 @@ def to_uuid(username: str):
     return res.json()["id"]
 
 def get_face(uuid: str, size=8, overlay=False) -> Image.Image:
-    # Retrieve face from crafatar
-    url = f"https://crafatar.com/avatars/{uuid}?size={size}"
+    # Retrieve face from mineatar
+    url = f"https://api.mineatar.io/face/{uuid}?scale={int(size / 8)}"
 
     if overlay:
         url += "&overlay"
