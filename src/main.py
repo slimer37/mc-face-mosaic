@@ -98,6 +98,8 @@ def main():
         dimension *= 2
 
     new_size = (dimension, dimension)
+
+    os.makedirs(output_directory, exist_ok=True)
     
     mosaic.save(f"{output_directory}/mosaic.png")
 
