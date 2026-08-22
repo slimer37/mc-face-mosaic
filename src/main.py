@@ -24,7 +24,7 @@ def main():
     argparser = ArgumentParser()
     
     argparser.add_argument("--min-size", "-s", help="Minimum size to use when resizing the output mosaic", default=512, type=int)
-    argparser.add_argument("--rush", "-r", action="store_false", help="Whether to save the image to mosaic.png after each face is added")
+    argparser.add_argument("--live", "-l", action="store_true", help="Whether to save the image to mosaic.png as each face is added")
     argparser.add_argument("--empty-center-size", "-e", help="The size of a center square to leave empty for an image to be added later", default=0, type=int)
     argparser.add_argument("--out", "-o", help="The output directory", default="output", type=str)
     argparser.add_argument("namefile", help="The file containing the list of names to use.", type=str)
@@ -39,7 +39,7 @@ def main():
         return
 
     minimum_size = args.min_size
-    in_rush = args.rush
+    is_live = args.live
     empty_center_side = args.empty_center_size
     output_directory = args.out
     
@@ -85,7 +85,7 @@ def main():
 
         mosaic.paste(face_img, (x * face_size, y * face_size))
         
-        if not in_rush:
+        if is_live:
             mosaic.save(f"{output_directory}/mosaic.png")
 
         x += 1
